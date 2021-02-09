@@ -1,4 +1,7 @@
-import {isNumber} from './type/index'
+import {Stack} from './core/index'
+import {Iface} from './iface/iface'
 
-let a = 1
-console.log(isNumber(1))
+export {
+  Stack,
+  Iface
+}
