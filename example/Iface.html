@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src='../dist/data-tools.js'></script>
+  <!-- <script src='../dist/data-tools.min.js'></script> -->
+  <script>
+    let stackInterface = dataTools.Iface({
+      methods: ['pop', 'push'],
+      props: ['length'],
+      name: 'stackInterface'
+    })
+    let res = dataTools.Iface.ensure(new dataTools.Stack(), stackInterface)
+
+    stackInterface = dataTools.Iface({
+      methods: ['pop', 'push'],
+      props: ['length'],
+      name: 'stackInterfacessss'
+    })
+    stackInterface = dataTools.Iface({
+      methods: ['pop', 'push'],
+      props: ['length'],
+      name: 'stackInterface'
+    })
+    console.log(res)
+
+    const exStackInterface = dataTools.Iface.extends(stackInterface, {
+      name: 'exStackInterface',
+      methods: ['s', 'pop'],
+      props: ['lenc']
+    })
+
+    console.log(dataTools.Iface.all)
+
+  </script>
+</body>
+</html>

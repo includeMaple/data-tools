@@ -17,7 +17,7 @@ export class Indentation {
     let stack = new Stack()
     let str = JSON.stringify(this.data)
     for (let i=0; i<str.length; i++) {
-      
+      console.log(stack)
     }
   }
 }

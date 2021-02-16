@@ -1,15 +1,15 @@
-const {Iface, Stack} = require('../dist/data-tools')
-// var expect = require('chai').expect;
-var expect = require('chai').expect;
+let dataTools = require('../dist/data-tools.cjs.js')
+let expect = require('chai').expect;
 
-const stackInterface = Iface({
-  methods: ['pop', 'push'],
-  props: ['length']
-})
+let {
+  Iface,
+  Stack
+} = dataTools
 
-const exStackInterface = Iface.extends(stackInterface, {
-  methods: ['s'],
-  props: ['lenc']
+let stackInterface = Iface({
+  methods: ['pop', 'push', 'isEmpty', 'isFull'],
+  props: ['length'],
+  name: 'stackInterface'
 })
 
 describe('Stack interface test', function (){

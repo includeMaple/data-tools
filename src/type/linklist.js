@@ -6,9 +6,12 @@ class Node {
   }
 }
 
-class DoubleLinkList{
+let node = new Node()
+console.log(node)
+
+export class DoubleLinkList{
   constructor () {
-    this.head = None
+    this.head = null
   }
   isEmpty () {
     return self.head === null

@@ -1,4 +1,4 @@
-class Deque {
+export class Deque {
   constructor () {
   }
 }

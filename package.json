@@ -4,14 +4,17 @@
   "description": "data structure and algorithm with javascript tools",
   "main": "src/index.js",
   "scripts": {
+    "build": "eslint src && rollup --config build/dev.js && rollup --config build/pro.js && rollup --config build/cjs.js && rollup --config build/esm.js",
+    "eslint": "eslint src",
     "test": "mocha",
-    "build": "rollup --config build/build.js"
+    "test-update": "eslint src && rollup --config build/cjs.js && mocha",
+    "cover": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/includeMaple/data-tools.git"
   },
-  "author": "",
+  "author": "includeMaple",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/includeMaple/data-tools/issues"
@@ -19,9 +22,18 @@
   "homepage": "https://github.com/includeMaple/data-tools#readme",
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
+    "@babel/register": "^7.12.13",
+    "@rollup/plugin-babel": "^5.3.0",
     "chai": "^4.3.0",
+    "core-js": "^3.8.3",
+    "eslint": "^7.20.0",
+    "istanbul": "^0.4.5",
     "mocha": "^8.2.1",
     "rollup": "^2.38.5",
-    "rollup-plugin-babel": "^4.4.0"
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-uglify": "^6.0.4"
   }
 }

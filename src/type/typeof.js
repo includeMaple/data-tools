@@ -1,5 +1,6 @@
 
 import {Stack} from '../core/stack'
+import {Iface} from '../iface/iface'
 /**
  * undefined or null
  * @param {*} val value
@@ -7,6 +8,15 @@ import {Stack} from '../core/stack'
  */
 export const isDef = function (val) {
   return !(val === undefined || val === null)
+}
+
+/**
+ * string but not ''
+ * @param {*} val 
+ * @return {boolean}
+ */
+export const isDefString = function (val) {
+  return typeof(val) === 'string' && val.length > 0
 }
 
 /**
@@ -85,15 +95,24 @@ export const isStack = function (val) {
   if (isDef(val)) return false
   return val.constructor === Stack
 }
+/**
+ * iface
+ * @param {*} val 
+ */
+export const isIface = function (val) {
+  return val.constructor === Iface
+}
 
 /**
  * return val type
  * @param {*} val
  * @return {string} lower
  */
-export const getType = function (val) {
-  if (isJSON(val)) return 'json'
-  if (isStack(val)) return 'stack'
-  let str = Object.prototype.toString.apply(val)
-  return str.substring(6, str.length-2).toLowerCase()
+export const getType = function (val, firstUpper=false) {
+  let str = Object.prototype.toString.apply(val).slice(8, -1).toLowerCase()
+  if (firstUpper) {
+    str = str.charAt(0).toUpperCase() + str.slice(1)
+  }
+  return str
+  // }
 }

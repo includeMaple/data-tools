@@ -1,4 +1,4 @@
-import {isJSON, isObject, isFunction, getType, Stack} from '../type/index'
+import {isJSON, getType} from '../type/index'
 import {merge} from '../util/index'
 import {Indentation} from '../methods/indentation'
 
@@ -19,7 +19,7 @@ import {Indentation} from '../methods/indentation'
 /**
  * 
  */
-class Json {
+export class Json {
   constructor (opt) {
     if (!this.isJSON(opt.data)) {
       return

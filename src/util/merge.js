@@ -2,25 +2,24 @@ import {getType} from '../type/index'
 
 /**
  * merge
- * @param {boolean||undefined} deep 
  */
-export const merge = function (deep=false) {
+export const merge = function () {
   let temp
-  switch (getType(sarguments[0])) {
+  switch (getType(arguments[0])) {
     case 'array':
       temp = []
-      if (!deep) {
-        for (let i=0; i<arguments.length; i++) {
-          temp.concat(arguments[i])
+      for (let i=0; i<arguments.length; i++) {
+        for (let j=0; j<arguments[i].length; j++) {
+          if (temp.indexOf(arguments[i][j])<0) {
+            temp.push(arguments[i][j])
+          }
         }
       }
       break;
     case 'object':
       temp = {}
-      if (!deep) {
-        for (let i=0; i<arguments.length;i++) {
-          Object.assign(temp, arguments[i])
-        }
+      for (let i=0; i<arguments.length;i++) {
+        Object.assign(temp, arguments[i])
       }
       break;
     default:
