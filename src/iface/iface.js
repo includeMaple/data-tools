@@ -51,8 +51,8 @@ Iface.extends = function () {
     } else {
       tempOpt.name = obj.name || tempOpt.name
     }
-    tempOpt.props = merge(tempOpt.props, obj.props)
-    tempOpt.methods = merge(tempOpt.methods, obj.methods)
+    tempOpt.props = merge(tempOpt.props, obj.props || [])
+    tempOpt.methods = merge(tempOpt.methods, obj.methods || [])
   }
   return Iface(tempOpt)
 }
@@ -67,19 +67,49 @@ Iface.ensure = function (obj, iface) {
     props,
     methods
   } = iface
+
   if (!props) props = []
   if (!methods) methods = []
   for (let item of props) {
-    if (isUndefined(obj[item])){
-      addLog.add(`interface ${iface.name} expect prop ${item}`)
-      return false
+    if (item.indexOf('static ') === 0) {
+      // static
+      if (isUndefined(obj.constructor[item.split(' ')[1]])) {
+        addLog.add(`interface ${iface.name} expect prop ${item}`)
+        return false
+      }
+    } else if (item.indexOf('class ') === 0){
+      // class
+      if (isUndefined(obj[item.split(' ')[1]])) {
+        addLog.add(`interface ${iface.name} expect prop ${item}`)
+        return false
+      }
+    } else {
+      // normal
+      if (isUndefined(obj[item])){
+        addLog.add(`interface ${iface.name} expect prop ${item}`)
+        return false
+      }
     }
   }
   for (let item of methods) {
-    if (!isFunction(obj[item])) {
-      console.log(`interface ${iface.name} expect prop ${item}`)
-      addLog.add(`interface ${iface.name} expect methods ${item}`)
-      return false
+    if (item.indexOf('static ') === 0) {
+      // static
+      if (!isFunction(obj.constructor[item.split(' ')[1]])) {
+        addLog.add(`interface ${iface.name} expect methods ${item}`)
+        return false
+      }
+    } else if (item.indexOf('class ') === 0) {
+      // class
+      if (!isFunction(obj[item.split(' ')[1]])) {
+        addLog.add(`interface ${iface.name} expect methods ${item}`)
+        return false
+      }
+    } else {
+      // normal
+      if (!isFunction(obj[item])) {
+        addLog.add(`interface ${iface.name} expect methods ${item}`)
+        return false
+      }
     }
   }
   return true

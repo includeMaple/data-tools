@@ -14,8 +14,20 @@
       props: ['length'],
       name: 'stackInterface'
     })
-    let res = dataTools.Iface.ensure(new dataTools.Stack(), stackInterface)
-
+    let jsonInterface = dataTools.Iface({
+      methods: ['static stringify', 'static parse'],
+      props: [],
+      name: 'jsonInterface'
+    })
+    let dealInterface = dataTools.Iface({
+      methods: ['deal', 'init', 'filter', 'update'],
+      name: 'dealInterface'
+    })
+    let iface = dataTools.Iface({
+      methods: ['class extends', 'class ensure'],
+      props: ['class all'],
+      name: 'iface'
+    })
     stackInterface = dataTools.Iface({
       methods: ['pop', 'push'],
       props: ['length'],
@@ -26,15 +38,15 @@
       props: ['length'],
       name: 'stackInterface'
     })
-    console.log(res)
-
     const exStackInterface = dataTools.Iface.extends(stackInterface, {
       name: 'exStackInterface',
       methods: ['s', 'pop'],
       props: ['lenc']
     })
-
+    console.log(dataTools.Iface.ensure(new dataTools.Stack(), stackInterface))
+    let res = dataTools.Iface.ensure(dataTools.Iface, iface)
     console.log(dataTools.Iface.all)
+    
 
   </script>
 </body>

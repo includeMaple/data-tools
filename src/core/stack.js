@@ -47,4 +47,18 @@ export class Stack {
       this._max = val
     }
   }
+  get top () {
+    if (this.isEmpty()) {
+      return 'stack is empty'
+    }
+    return this._data[this._length-1]
+  }
+}
+
+export class ExStack extends Stack{
+  constructor (max) {
+    super(max)
+  }
+  clear () {}
+  join () {}
 }

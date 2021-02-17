@@ -22,6 +22,7 @@ function stackInterfaceTest (Stack) {
       let length = stack.length
       let isEmpty = stack.isEmpty()
       let isFull = stack.isFull()
+      expect(stack.top).to.be.equal('item2')
       expect(length).to.be.equal(2)
       expect(isFull).to.be.false
       expect(isEmpty).to.be.false
@@ -35,6 +36,7 @@ function stackInterfaceTest (Stack) {
       let isEmpty = stack.isEmpty()
       let isFull = stack.isFull()
       expect(pop).to.be.equal('item2')
+      expect(stack.top).to.be.equal('item1')
       expect(length).to.be.equal(1)
       expect(isEmpty).to.be.false
       expect(isFull).to.be.false

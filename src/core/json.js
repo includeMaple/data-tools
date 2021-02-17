@@ -1,6 +1,6 @@
-import {isJSON, getType} from '../type/index'
-import {merge} from '../util/index'
+import {isJSON, getType, isUndefined} from '../type/index'
 import {Indentation} from '../methods/indentation'
+import { addLog } from '../log/index'
 
 // ---------config
 // let options = {
@@ -20,15 +20,15 @@ import {Indentation} from '../methods/indentation'
  * 
  */
 export class Json {
-  constructor (opt) {
-    if (!this.isJSON(opt.data)) {
-      return
+  constructor (data) {
+    if (!isUndefined(data)) {
+      if (!isJSON(data)) {
+        addLog.add('this is not json', 'error')
+      }
+      this.data = data
     }
-    this.opt = opt;
-    this.data = opt.data;
-    this.life()
   }
-  life () {
+  deal () {
     this.init()
     this.filter()
     this.update()
@@ -46,22 +46,30 @@ export class Json {
         break;
     }
   }
+  // node, opt
+  _filterNode() {
+  }
   update () {}
-  isJSON (data) {
-    return isJSON(data||this.data)
-  }/**
+  /**
    * 
    * @param {*} data 
    * @param {*} isIndentation 
    * @param {*} opt 
    */
-  stringify (data, isIndentation=false, opt) {
-    if (!data) data = this.data
-    if (!isIndentation) return JSON.stringify(this.data)
-    opt = merge(['{', '}', '[', ']'], opt)
-    return (new Indentation(JSON.stringify(data), opt))
+  static stringify (data, isIndentation=false, opt) {
+    if (!isJSON(data)) return 'data is not a json'
+    if (!isIndentation) return JSON.stringify(data)
+    opt = opt || {
+      '{': '}',
+      '[': ']'
+    }
+    return (new Indentation(JSON.stringify(data), opt)).getStr()
   }
-  parse (data, isIndentation=false) {
+  static parse (data, isIndentation=false) {
     if (!isIndentation) return JSON.parse(data)
   }
+  // data, opt, deep=false, isOwn=true
+  toJson () {
+  }
 }
+
