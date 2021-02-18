@@ -13,6 +13,8 @@
 import datatool from 'datatool'
 let {Iface, Json, Stack} = datatool
 ```
+
+
 # Json
 ## interface
 ```javascipt
@@ -20,6 +22,11 @@ let {Iface, Json, Stack} = datatool
   methods: ['static stringify', 'static parse'],
   name: 'jsonInterface'
 }
+```
+## json序列化
+给json序列化的同时添加缩进、换行
+```javascript
+    let str =Json.stringify(json, true)
 ```
 
 
