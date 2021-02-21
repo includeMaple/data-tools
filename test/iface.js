@@ -24,7 +24,6 @@ let exStackInterface = Iface.extends(stackInterface, {
 })
 let jsonInterface = Iface({
   methods: ['static stringify', 'static parse', 'toJson'],
-  props: [],
   name: 'jsonInterface'
 })
 
