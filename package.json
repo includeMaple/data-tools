@@ -10,6 +10,9 @@
     "test-update": "eslint src && rollup --config build/cjs.js && mocha",
     "cover": "istanbul cover _mocha"
   },
+  "gitHooks": {
+    "pre-commit": "eslint && build && test && cover"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/includeMaple/data-tools.git"
