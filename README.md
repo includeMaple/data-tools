@@ -2,8 +2,7 @@
 [![Github Releases](https://img.shields.io/npm/l/datatool.svg)](https://github.com/includeMaple/datatool) 
 [![Github Releases](https://img.shields.io/npm/v/datatool.svg)](https://github.com/includeMaple/datatool)
 [![Github Releases](https://img.shields.io/npm/dm/datatool.svg)](https://github.com/includeMaple/datatool)
-
-
+[![](https://travis-ci.org/includeMaple/datatool.svg?branch=main)](https://travis-ci.org/includeMaple/datatool)
 
 # 安装
 ```npm install datatool --save```
