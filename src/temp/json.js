@@ -1,3 +1,8 @@
+// 后续从datatools删除，单独放一个项目
+// 1、json
+// 2、xml
+// 3、file断点上传
+// 以上都要基于数据结构与算法
 import {isJSON, getType, isUndefined} from '../type/index'
 import {Indentation} from '../methods/indentation'
 import { addLog } from '../log/index'

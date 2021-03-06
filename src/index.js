@@ -1,9 +1,8 @@
-import {Stack, ExStack, Json} from './core/index'
-import {Iface} from './iface/iface'
+import {Stack} from './sq/stack'
+import {isArray} from 'iface'
+
 
 export default {
   Stack,
-  Iface,
-  Json,
-  ExStack
+  isArray
 }

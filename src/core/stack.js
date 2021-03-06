@@ -1,4 +1,4 @@
-import {addLog} from '../log/index'
+import {addLog} from 'iface'
 
 export class Stack {
   constructor (max) {
@@ -53,12 +53,4 @@ export class Stack {
     }
     return this._data[this._length-1]
   }
-}
-
-export class ExStack extends Stack{
-  constructor (max) {
-    super(max)
-  }
-  clear () {}
-  join () {}
 }
