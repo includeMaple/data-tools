@@ -78,3 +78,21 @@ export class Json {
   }
 }
 
+
+// # Json
+// ## interface
+// ```javascipt
+// {
+//   methods: ['static stringify', 'static parse'],
+//   name: 'jsonInterface'
+// }
+// ```
+// ## json序列化
+// 普通序列化
+// ```javascript
+// let str =Json.stringify(json)
+// ```
+// 给json序列化的同时添加缩进、换行
+// ```javascript
+//     let str =Json.stringify(json, true)
+// ```

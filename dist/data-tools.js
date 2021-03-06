@@ -31,35 +31,20 @@
     return Constructor;
   }
 
-  // 最简单版，后续重构
-  function addLog(content) {
-    var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "danger";
-
-    switch (type) {
-      case 'danger':
-        console.error(content);
-        break;
-
-      case 'info':
-        console.log(content);
-        break;
-    }
-  }
-
   var Stack = /*#__PURE__*/function () {
     function Stack(max) {
       _classCallCheck(this, Stack);
 
       this._data = [];
       this._length = 0;
-      this._max = max || 100000;
+      this._max = max || null;
     }
 
     _createClass(Stack, [{
       key: "pop",
       value: function pop() {
         if (this.isEmpty()) {
-          addLog.add('stack is empty.', 'error');
+          iface.addLog.add('stack is empty.', 'error');
           return false;
         }
 
@@ -70,7 +55,7 @@
       key: "push",
       value: function push(val) {
         if (this.isFull()) {
-          addLog.add('stack is full. ', 'error');
+          iface.addLog.add('stack is full. ', 'error');
           return false;
         }
 
@@ -86,7 +71,7 @@
     }, {
       key: "isFull",
       value: function isFull() {
-        if (this._length >= this._max) return true;
+        if (!iface.isDef(this._max) && this._length >= this._max) return true;
         return false;
       }
     }, {
@@ -124,8 +109,82 @@
     return Stack;
   }();
 
+  var Node = function Node(data) {
+    _classCallCheck(this, Node);
+
+    this.data = data || null;
+    this.next = null;
+    this.pre = null;
+  }; // linklist with header
+
+
+  var LinkList = /*#__PURE__*/function () {
+    function LinkList(max) {
+      _classCallCheck(this, LinkList);
+
+      this._length = 0;
+      this._max = max || null;
+      var node = new Node();
+      this.head = node;
+      this.tail = node;
+    }
+
+    _createClass(LinkList, [{
+      key: "push",
+      value: function push(data) {
+        var node = new Node(data);
+        node.next = this.head.next;
+        node.pre = this.head;
+        this.head.next = node;
+      }
+    }, {
+      key: "pop",
+      value: function pop() {
+        if (this.isEmpty()) {
+          iface.addLog.add('stack is empty.', 'error');
+          return false;
+        }
+
+        var temp = this.tail;
+        this.tail = this.tail.pre;
+        this.tail.next = null;
+        this._length -= 1;
+        return temp;
+      }
+    }, {
+      key: "top",
+      value: function top() {
+        return this.tail;
+      }
+    }, {
+      key: "isEmpty",
+      value: function isEmpty() {
+        return this._length === 0;
+      }
+    }, {
+      key: "isFull",
+      value: function isFull() {
+        if (!iface.isDef(this._max) && this._length >= this._max) return true;
+        return false;
+      }
+    }, {
+      key: "length",
+      get: function get() {
+        return this._length;
+      },
+      set: function set(val) {
+        return;
+      }
+    }]);
+
+    return LinkList;
+  }(); // with header
+
+  var Deque = LinkList;
+
   var index = {
     Stack: Stack,
+    Deque: Deque,
     isArray: iface.isArray
   };
 

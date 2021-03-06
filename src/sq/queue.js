@@ -1,3 +1,7 @@
-export class Queue {}
+import {LinkList} from '../linear/linklist'
 
-export class Deque {}
+let Deque = LinkList
+
+export {
+  Deque
+}

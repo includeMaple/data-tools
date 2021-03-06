@@ -1,10 +1,10 @@
-import {addLog} from '../utils/addLog'
+import {addLog, isDef} from 'iface'
 
 export class Stack {
   constructor (max) {
     this._data = []
     this._length = 0
-    this._max = max || 100000
+    this._max = max || null
   }
   pop () {
     if (this.isEmpty()) {
@@ -27,7 +27,7 @@ export class Stack {
     return this._length === 0
   }
   isFull () {
-    if (this._length >= this._max) return true
+    if (!isDef(this._max) && this._length >= this._max)  return true
     return false
   }
   get length () {
@@ -53,12 +53,4 @@ export class Stack {
     }
     return this._data[this._length-1]
   }
-}
-
-export class ExStack extends Stack{
-  constructor (max) {
-    super(max)
-  }
-  clear () {}
-  join () {}
 }

@@ -3,7 +3,8 @@ let expect = require('chai').expect
 let dataTools = require('../dist/data-tools.cjs')
 
 let {
-  Stack
+  Stack,
+  Deque
 } = dataTools
 
 let stackInterface = Iface({
@@ -13,7 +14,11 @@ let stackInterface = Iface({
 })
 
 describe('Stack interface test', function (){
-  it('stackInterface', function (){
+  it('Stack', function (){
     expect(Iface.ensure(new Stack(), stackInterface)).to.be.ok
   })
+  it('Deque', function () {
+    expect(Iface.ensure(new Deque(), stackInterface)).to.be.ok
+  })
 })
+
