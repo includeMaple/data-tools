@@ -2,11 +2,7 @@
 [![Github Releases](https://img.shields.io/npm/l/datatool.svg)](https://github.com/includeMaple/datatool) 
 [![Github Releases](https://img.shields.io/npm/v/datatool.svg)](https://github.com/includeMaple/datatool)
 [![Github Releases](https://img.shields.io/npm/dm/datatool.svg)](https://github.com/includeMaple/datatool)
-<<<<<<< HEAD
-
-=======
 [![](https://travis-ci.org/includeMaple/datatool.svg?branch=main)](https://travis-ci.org/includeMaple/datatool)
->>>>>>> 5ecadc84d2724f3c1074a6fcb652209ce167a0e8
 
 # 安装
 
