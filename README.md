@@ -4,25 +4,30 @@
 [![Github Releases](https://img.shields.io/npm/dm/datatool.svg)](https://github.com/includeMaple/datatool)
 [![](https://travis-ci.org/includeMaple/datatool.svg?branch=main)](https://travis-ci.org/includeMaple/datatool)
 
-# 安装
-
-```npm install datatool --save```
-
+# 安装使用
 
 ```javascript
-<script src='../dist/data-tools.min.js'></script>
+npm install datatool --save
 ```
-
-# 使用
 
 ```javascript
 import datatool from 'datatool'
 let {Stack} = datatool
 ```
 
+or
+
+```javascript
+<script src='../dist/data-tools.min.js'></script>
+<script>
+  let {Stack} = dataTools
+</script>
+```
+
 # Stack && Queue
 
 ## what：什么是Stack与Queue
+
 Stack和Queue是两种抽象数据结构：
 
 1. Stack：LIFO(last-in, first-out)后进先出
@@ -35,6 +40,8 @@ Stack和Queue是两种抽象数据结构：
 1. 一堆书，LIFO，一本本顺序拿书，先放上去的压在底部，最后拿到
 1. 乘坐扶梯，FIFO，先到的人先下扶梯
 1. 排队买票，FIFO，先来的人先排队先买到票
+
+注：抽象数据类型意味着上面只是定义了Stack和Queue的数据类型，没有规定其实现，对于Stack和Queue来说，可以使用顺序存储，也可以使用链式存储（单链表或双链表）
 
 ## 双端队列Deque
 

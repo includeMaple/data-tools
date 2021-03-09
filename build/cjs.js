@@ -1,4 +1,5 @@
-import {configs} from './config'
+import {configs} from './config';
+import resolve from 'rollup-plugin-node-resolve';
 
 
 export default {
@@ -7,5 +8,8 @@ export default {
     file: configs.out + '.cjs.js',
     format: 'cjs',
     banner: configs.banner
-  }
+  },
+  plugins: [
+    resolve()
+  ]
 }

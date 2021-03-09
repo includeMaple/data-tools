@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
-import {configs} from './config'
+import resolve from 'rollup-plugin-node-resolve';
+import {configs} from './config';
 
 export default {
   input: configs.entry,
@@ -10,8 +11,9 @@ export default {
     banner: configs.banner
   },
   plugins: [
+    resolve(),
     babel({
-      exclude: 'node_modules/**',
-    }),
+      // exclude: 'node_modules/**',
+    })
   ]
 }

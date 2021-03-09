@@ -1,6 +1,7 @@
 import {uglify} from 'rollup-plugin-uglify';
 import babel from 'rollup-plugin-babel';
-import {configs} from './config'
+import {configs} from './config';
+import resolve from 'rollup-plugin-node-resolve';
 
 
 export default {
@@ -11,9 +12,10 @@ export default {
     format: 'umd'
   },
   plugins: [
+    resolve(),
     uglify(),
     babel({
-      exclude: 'node_modules/**',
-    }),
+      // exclude: 'node_modules/**',
+    })
   ]
 }

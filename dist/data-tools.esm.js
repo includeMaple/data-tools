@@ -3,7 +3,153 @@
  * (c) 2021-2021 include maple
  * Released under the MIT License.
  */
-import { addLog, isDef, isArray } from 'iface';
+class AddLog {
+  constructor () {
+  }
+  add (content, type='danger', platforms='console') {
+    this.content = content;
+    this.type = type;
+    this.platforms = platforms;
+    this._dispatch();
+  }
+  _dispatch () {
+    dispatch({
+      header: this.platforms,
+      tail: this.type.charAt(0).toUpperCase() + this.type.slice(1)
+    }, this);
+  }
+  setOptions (opt) {
+    if (opt.type) this.type = opt.type;
+    if (opt.platforms) this.platforms = opt.platforms;
+  }
+  consoleInfo() {
+    console.log(this.content);
+  }
+  consoleDanger () {
+    console.error(this.content);
+  }
+  consoleError () {
+    throw new Error(this.content)
+  }
+}
+let addLog = new AddLog();
+
+/**
+ * undefined or null
+ * @param {*} val value
+ * @return {boolean}
+ */
+const isDef = function (val) {
+  return !(val === undefined || val === null)
+};
+/**
+ * function
+ * @param {*} val value
+ * @return {boolean}
+ */
+const isFunction = function (val) {
+  return typeof(val) === 'function'
+};
+
+/**
+ * object
+ * @param {*} val value
+ * @return {boolean}
+ */
+const isObject = function (val) {
+  return Object.prototype.toString.apply(val) === '[object Object]'
+};
+
+/**
+ * array
+ * @param {*} val value
+ */
+const isArray = function (val) {
+  return Array.isArray(val)
+};
+
+/**
+ * function dispatch
+ * @param {string|object} name function name, if object, {header:'h', name: 's'}, use "header + name" as function name
+ * @param {*} that this
+ * @param {array} params 
+ */
+function dispatch(name, that, params=[]) {
+  // name is object
+  if (isObject(name)) {
+    let {
+      header,
+      tail
+    } = name;
+    let funName = header + tail;
+    if (that && that[funName]) {
+      funName = isFunction(that[funName]) ? header + tail: header + 'Else';
+      if (isFunction(that[funName])) return that[funName](...params)
+    }
+    return false
+  }
+  // name is string
+  if (that && that[name] && isFunction([name])) return that[name](...params)
+  return false
+}
+
+class CreateConfig {
+  constructor (opt) {
+    this.opt = {
+      newLine: '\n',
+      lang: 'javascript',
+      type: 'md'
+    };
+    opt && this.setOptions(opt);
+    this.config = this[this.opt.type]();
+  }
+  setOptions (opt) {
+    this.opt = Object.assign({}, this.opt, opt);
+  }
+  md () {
+    return [
+      {
+        key: 'lev1',
+        header: '# ',
+        tail: this.opt.newLine
+      },
+      {
+        key: 'lev2',
+        header: '## ',
+        tail: this.opt.newLine
+      },
+      {
+        key: 'name',
+        header: '### ',
+        tail: this.opt.newLine
+      },
+      {
+        key: 'params',
+        header: '`@params ',
+        tail: '`'+this.opt.newLine,
+        isArray: true
+      },
+      {
+        key: 'return',
+        header: '`@return ',
+        tail: '`'+this.opt.newLine,
+        isArray: true
+      },
+      {
+        key: 'description',
+        header: '',
+        tail: this.opt.newLine + this.opt.newLine
+      },
+      {
+        key: 'example',
+        header: '```' + this.opt.lang + this.opt.newLine,
+        tail: this.opt.newLine + '```' + this.opt.newLine
+      }
+    ]
+  }
+}
+
+(new CreateConfig()).config;
 
 class Stack {
   constructor (max) {

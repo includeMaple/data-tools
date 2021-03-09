@@ -1,4 +1,5 @@
-import {configs} from './config'
+import {configs} from './config';
+import resolve from 'rollup-plugin-node-resolve';
 
 
 export default {
@@ -9,5 +10,6 @@ export default {
     banner: configs.banner
   },
   plugins: [
+    resolve()
   ]
 }
