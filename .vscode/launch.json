@@ -31,7 +31,7 @@
       "type": "node",
       "request": "launch",
       "name": "current file",
-      "program": "${workspaceFolder}/examples/test.js",
+      "program": "${workspaceFolder}/examples/ttest.js",
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/babel-node",
       "sourceMaps": true,
       "env": {

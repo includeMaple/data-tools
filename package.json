@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/includeMaple/data-tools#readme",
   "dependencies": {
-    "iface": "^1.0.3"
+    "iface": "^1.0.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",
